@@ -8,11 +8,14 @@ connectToDB();
 
 app.use(express.json());
 app.use(morgan("tiny"));
+
 const userRouter = require("./routes/userRoutes");
+const ticketRouter = require("./routes/ticketRoutes");
 
 const { PORT } = require("./util/config");
 
 app.use("/api/authenticate", userRouter);
+app.use("/api/ticket", ticketRouter);
 
 app.listen(PORT, () => {
   console.log("server has started");

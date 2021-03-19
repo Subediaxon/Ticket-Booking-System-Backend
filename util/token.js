@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
+const expressJWT = require("express-jwt");
 const { JWT_SECRET } = require("./config");
+
 const createToken = (user) => {
   // Sign the JWT
   return jwt.sign(
@@ -13,4 +15,6 @@ const createToken = (user) => {
   );
 };
 
-module.exports = { createToken };
+const decodeToken = expressJWT({ secret: JWT_SECRET, algorithms: ["HS256"] });
+
+module.exports = { createToken, decodeToken };

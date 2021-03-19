@@ -3,6 +3,7 @@ const {
   loginController,
   signupController,
 } = require("../controller/userController");
+
 const router = Router();
 
 router.route("/login").post(loginController);
