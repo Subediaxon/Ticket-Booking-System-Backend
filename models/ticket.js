@@ -1,18 +1,26 @@
 const mongoose = require("mongoose");
 
 const ticketSchema = new mongoose.Schema({
+  fullName: {
+    type: String,
+    required: true,
+    trim: true,
+    lowercase: true,
+  },
   from: {
     type: String,
     required: true,
     trim: true,
     lowercase: true,
   },
+
   to: {
     type: String,
     required: true,
     trim: true,
     lowercase: true,
   },
+
   number: {
     type: Number,
     required: true,

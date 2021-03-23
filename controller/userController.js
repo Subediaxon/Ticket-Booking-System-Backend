@@ -35,7 +35,7 @@ const loginController = async (req, res) => {
 const signupController = async (req, res) => {
   try {
     // exttract email and password from request body
-    const { email, password } = req.body;
+    const { email, password, firstName, lastName } = req.body;
 
     // check if user with email already exists
     const isUser = await User.findOne({ email });
@@ -46,18 +46,24 @@ const signupController = async (req, res) => {
 
     // save user to database
     const savedUser = await User.create({
+      firstName,
+      lastName,
       email,
       password: hashedPassword,
     });
 
     // send user data if user is sucessfully added to database
     if (savedUser) {
-      const { _id, email } = savedUser;
-      const token = createToken({ _id, email });
+      const { _id, email, firstName, lastName } = savedUser;
+      const token = createToken({ _id });
 
       const decodedToken = jwtDecode(token);
       const expiresAt = decodedToken.exp;
-      return res.send({ userInfo: { _id, email }, token, expiresAt });
+      return res.send({
+        userInfo: { _id, email, firstName, lastName },
+        token,
+        expiresAt,
+      });
     }
   } catch (error) {
     res.status(500).send({ error: "something went wrong" });
