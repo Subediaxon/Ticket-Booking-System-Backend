@@ -17,4 +17,11 @@ const bookTicketController = async (req, res) => {
   }
 };
 
-module.exports = { bookTicketController };
+const getAllTicket = async (req, res) => {
+  const allticket = await Ticket.find({});
+  res.header("Content-Range", "tickets 0-20/20");
+
+  res.send(allticket);
+};
+
+module.exports = { bookTicketController, getAllTicket };

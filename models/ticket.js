@@ -42,5 +42,13 @@ const ticketSchema = new mongoose.Schema({
   },
 });
 
+ticketSchema.set("toJSON", {
+  virtuals: true,
+  transform: (_document, returnedObject) => {
+    delete returnedObject._id;
+    delete returnedObject.__v;
+  },
+});
 const Ticket = mongoose.model("Ticket", ticketSchema);
+
 module.exports = Ticket;
