@@ -54,13 +54,13 @@ const signupController = async (req, res) => {
 
     // send user data if user is sucessfully added to database
     if (savedUser) {
-      const { _id, email, firstName, lastName } = savedUser;
+      const { _id, email, firstName, lastName, role } = savedUser;
       const token = createToken({ _id });
 
       const decodedToken = jwtDecode(token);
       const expiresAt = decodedToken.exp;
       return res.send({
-        userInfo: { _id, email, firstName, lastName },
+        userInfo: { _id, email, firstName, lastName, role },
         token,
         expiresAt,
       });
