@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const availableRouteSchema = new mongoose.Schema({
+const routesSchema = new mongoose.Schema({
   route_from: {
     type: String,
     required: true,
@@ -19,12 +19,12 @@ const availableRouteSchema = new mongoose.Schema({
     trim: true,
     lowercase: true,
   },
-  travelDate: {
+  travel_Date: {
     type: Date,
     required: true,
   },
 });
 
-const availableRoutes = mongoose.model("Available_Route", availableRouteSchema);
+const Routes = mongoose.model("Routes", routesSchema);
 
-module.exports = availableRoutes;
+module.exports = Routes;

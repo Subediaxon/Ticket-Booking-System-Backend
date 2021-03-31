@@ -1,12 +1,11 @@
 const { Router } = require("express");
 const {
-  availableRouteController,
+  routesController,
   getAllRoutes,
-} = require("../controller/availableRouteController");
-const { decodeToken } = require("../util/token");
+} = require("../controller/routeController");
 
 const router = Router();
 
-router.route("/").post(decodeToken, availableRouteController).get(getAllRoutes);
+router.route("/").post(routesController).get(getAllRoutes);
 
 module.exports = router;
