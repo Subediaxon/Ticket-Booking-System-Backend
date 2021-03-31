@@ -29,6 +29,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userCreation: {
+    type: Date,
+    default: Date.now(),
+  },
+});
+userSchema.set("toJSON", {
+  virtuals: true,
+  transform: (_document, returnedObject) => {
+    delete returnedObject._id;
+    delete returnedObject.__v;
+  },
 });
 
 const User = mongoose.model("User", userSchema);

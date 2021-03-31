@@ -72,8 +72,7 @@ const signupController = async (req, res) => {
 
 const getAllUser = async (req, res) => {
   const allUsers = await User.find({});
-  console.log(allUsers);
-  // res.header("Content-Range", "users 0-10/10");
+  res.header("Content-Range", "users 0-10/10");
   res.send(allUsers);
 };
 module.exports = { loginController, signupController, getAllUser };

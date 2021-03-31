@@ -9,13 +9,10 @@ const routesController = async (req, res) => {
       vehicle_number,
       travel_Date,
     });
-    const populatedUser = await savedData
-      .populate("route_from", "route_to", "vehicle_number", "travel_Date")
-      .execPopulate();
-    console.log(populatedUser);
+
     res
       .status(200)
-      .send({ message: "route created sucessfully", data: populatedUser });
+      .send({ message: "route created sucessfully", data: savedData });
   } catch (error) {
     console.log(error);
     res.status(500).send({ error: "something went wrong" });
