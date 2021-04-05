@@ -6,6 +6,6 @@ const {
 
 const router = Router();
 
-router.route("/").post(routesController).get(getAllRoutes);
-
+router.route("/").post(routesController);
+router.route("/").get(getAllRoutes);
 module.exports = router;
